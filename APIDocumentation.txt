@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Task Manager Application
+  description: Let's the user create tasks and work on the assigned task within alloted time
+
+servers:
+  - url: localhost:8081
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
+
+paths:
+  /task/<string:Team_Name>:
+    get:
+      description: Returns a list of all tasks with description
+      
+      responses:
+        "200":
+          description: Successfully returned a list of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    task_id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    Priority:
+                      type: integer/string
+                    planned_date:
+                      type: Date
+                    assignee:
+                      type: string
+                    reporter:
+                      type:string
+                    status:
+                      type: string
+                    team_id:
+                      type: integer
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    post:
+      description: Create new task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    Priority:
+                      type: integer/string
+                    planned_date:
+                      type: Date
+                    assignee:
+                      type: string
+                    reporter:
+                      type:string
+                    status:
+                      type: string
+                    team_id:
+                      type: integer
+      responses:
+        "200":
+          description: Successfully created a new task
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                 properties:
+                    task_id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    Priority:
+                      type: integer/string
+                    planned_date:
+                      type: Date
+                    assignee:
+                      type: string
+                    reporter:
+                      type:string
+                    status:
+                      type: string
+                    team_id:
+                      type: integer
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+ /task/{Task_Name}:
+    get:
+      description: Obtain information about teammember from his or her unique id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: Successfully returned an Note
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                 properties:
+                    task_id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    Priority:
+                      type: integer/string
+                    planned_date:
+                      type: Date
+                    assignee:
+                      type: string
+                    reporter:
+                      type:string
+                    status:
+                      type: string
+                    team_id:
+                      type: integer
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  
+/tasks/<string:Title>:
+    put:
+      description: change the update status in the Database
+      parameters:
+        - name: id
+          in: path
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  status:
+                    type: string
+
+      responses:
+        "200":
+          description: Successfully Updated an Note
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    task_id:
+                      type: integer
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    Priority:
+                      type: integer/string
+                    planned_date:
+                      type: Date
+                    assignee:
+                      type: string
+                    reporter:
+                      type:string
+                    status:
+                      type: string
+                    team_id:
+                      type: integer
+
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+/home/{id}:
+    put:
+      description:  update user details using unique id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  phone_no:
+                    type: integer
+
+      responses:
+        "200":
+          description: Successfully updated user details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                 user_id:
+                    type: string
+                 username:
+                    type: string
+                  phone_no:
+                    type: integer
+                 role_id:
+                    type: string
+
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

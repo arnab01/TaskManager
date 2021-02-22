@@ -1,0 +1,25 @@
+DB : MySQL-DBMS
+Master Username : admin
+Password : 12345678
+
+Key : Name 
+Value : Flask-Server
+
+Db Endpoint: mysql-dbms.cjxt3oa51lw1.ap-south-1.rds.amazonaws.com
+Port : 3306
+
+
+
+Security Groups:
+
+security-group-flask-server
+flask-mysql-sg
+
+
+EC2 - 
+
+Public IP4 : 65.0.91.167
+https://jedischoolteam3.tk
+address: 13.232.149.111:8000/
+
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://admin:12345678@mysql-dbms.cjxt3oa51lw1.ap-south-1.rds.amazonaws.com/mydb'
